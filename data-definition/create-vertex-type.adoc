@@ -1,0 +1,13 @@
+= Define a Vertex Type
+
+To define a vertex type, use the `CREATE VERTEX` command. 
+
+Vertex types are part of a graph schema. You can define either a global vertex type or a local vertex type. 
+
+* <<Define a global vertex type>>
+* <<Define a local vertex type>>
+
+== Define a global vertex type
+To define a global vertex type, use the the `CREATE VERTEX` command on the global scope
+
+== Define a local vertex type

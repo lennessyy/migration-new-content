@@ -1,0 +1,20 @@
+= What is a Graph Database?
+
+A graph database is a database that uses graph structures for semantic queries with vertices, edges, and properties to represent and store data. Graph databases are designed to treat the relationships between data with equal importance as the data itself. 
+
+== Vertices and edges
+A graph consists of two elements: _vertices_ and _edges_. 
+Each vertex represents an entity and each edge represents the relationship between two entities. 
+
+For example, if two vertices of the type `person` are connected by an edge of the type `friendship`, it means the two entities are friends. 
+
+== Graph analytics in daily life
+Every day when you search using Google, you are using *Google’s Knowledge Graph*. Google search returns the web pages that contain the information you are looking for & they are ranked using a Graph algorithm called PageRank.
+
+Every week when you login, search and view business contacts on LinkedIn, it shows the degrees of separation from a business contact such as 1st, 2nd, 3rd-degree connection. 
+This is the result of a graph database search on LinkedIn’s Professional Network Graph indicating the number of hops from you to the contact being reviewed.
+Every time you see common connections or common groups with a second-degree contact, or LinkedIn recommends you to connect with a professional contact, you are querying the professional network graph at LinkedIn.
+
+Every time you use Amazon or wish.com to shop, you see product recommendations such as “people who bought this item also bought” or “these items are often bought together”. That comes from a graph analytics query.
+
+== Why TigerGraph?

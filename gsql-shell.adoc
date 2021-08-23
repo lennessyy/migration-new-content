@@ -1,0 +1,21 @@
+= The GSQL Shell
+
+The GSQL shell is a fully functional Java environment for interacting with the TigerGraph database. It is included in a standard TigerGraph installation. 
+
+== Launch the shell
+As the TigerGraph Linux user, type `gsql` into the bash terminal to start a GSQL shell session:
+
+[source,bash]
+----
+$ gsql
+----
+
+If authentication is enabled, you will need to provide credentials in order to launch the shell. 
+
+== Run a GSQL script
+You don't always need to enter the interactive shell in order to run a GSQL command. To run a GSQL command non-interactively, run the command `gsql` followed by the GSQL commands you want to run in quotes:
+
+[source,bash]
+----
+$ gsql 'ls'
+----

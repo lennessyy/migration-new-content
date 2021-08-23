@@ -1,0 +1,119 @@
+= Source conversion issues
+
+For converting .md files to .adoc, I will use https://github.com/asciidoctor/kramdown-asciidoc[kramdoc], which will take care of most syntax conversion except for the follwoing cases. 
+
+== Admonitions
+Mardown does not support admonitions. Therefore, Gitbook implemented their own Admonition syntax that requires post-processing.
+
+=== Raw text after kramdoc
+[source]
+----
+{% hint style="info" %}
+    This is an admonition
+{% endhint %}
+----
+
+=== Target adoc
+[source,adoc]
+----
+NOTE: This is an admonition
+----
+
+=== Admonition style matching
+Gitbook has four admonition styles, and here is how we map them to asciidoc admonitions:
+
+.Gitbook admonitions to asciidoc
+[cols="1,1"]
+|===
+|Gitbook style | Asciidoc style
+
+|info
+|NOTE
+
+|warning
+|CAUTION
+
+|success
+|NOTE
+
+|danger
+|WARNING
+|===
+
+== Code block with tabs
+Code with tabs is a little complicated because it is not natively supported in asciidoc either and requires a plug-in.
+
+=== Raw text after kramdoc
+[source]
+----
+
+----
+
+=== Target adoc (with plug-in)
+[source]
+----
+----
+
+== Code block with title
+
+=== Raw text after kramdoc
+[literal]
+....
+{% code title="RUN_cf.sh: Bash script for Collaborative Filtering (cf) example" %}
+ 
+[,bash]
+----
+#!/bin/bash
+test='cf'
+###
+gsql 'DROP ALL'
+gsql ../${test}/${test}_model.gsql
+gsql 'CREATE GRAPH gsql_demo(*)'
+ 
+# Loading
+gsql -g gsql_demo ../${test}/${test}_load.gsql
+## loading script contains this line:
+## RUN JOB load_cf USING FILENAME="../cf/data/cf_data.csv", SEPARATOR=",", EOL="\n"
+ 
+# Querying
+gsql -g gsql_demo ../${test}/${test}_query.gsql
+gsql -g gsql_demo INSTALL QUERY ALL
+gsql -g gsql_demo 'RUN QUERY topCoLiked("id1", 10)'
+----
+ 
+{% endcode %}
+....
+
+=== Target adoc
+
+[literal]
+....
+.RUN_cf.sh: Bash script for Collaborative Filtering (cf) example
+[source,bash]
+----
+#!/bin/bash
+test='cf'
+###
+gsql 'DROP ALL'
+gsql ../${test}/${test}_model.gsql
+gsql 'CREATE GRAPH gsql_demo(*)'
+ 
+# Loading
+gsql -g gsql_demo ../${test}/${test}_load.gsql
+## loading script contains this line:
+## RUN JOB load_cf USING FILENAME="../cf/data/cf_data.csv", SEPARATOR=",", EOL="\n"
+ 
+# Querying
+gsql -g gsql_demo ../${test}/${test}_query.gsql
+gsql -g gsql_demo INSTALL QUERY ALL
+gsql -g gsql_demo 'RUN QUERY topCoLiked("id1", 10)'
+----
+....
+
+== Images 
+Images are handled automatically by the converter, but they won't be referencing to the correct location. 
+
+Is it possible to have a script that moves the image files?
+
+. Search a page for references to images 
+. Fetch the image from the outside image folder to put in the correct location
