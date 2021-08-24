@@ -46,12 +46,35 @@ Code with tabs is a little complicated because it is not natively supported in a
 === Raw text after kramdoc
 [source]
 ----
+{% tabs %} 
+{% tab title="Example: extract for = x.y.z" %}
+	Content
+{% endtab %} 
+{% tab title=”XXX”}
+	Content
+{% endtab %}
+{% endtabs %}
 
 ----
 
 === Target adoc (with plug-in)
 [source]
 ----
+
+[tabs]
+====
+Tab A::
++
+--
+Contents of tab A.
+--
+Tab B::
++
+--
+Contents of tab B.
+--
+====
+
 ----
 
 == Code block with title

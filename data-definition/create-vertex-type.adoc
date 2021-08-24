@@ -1,13 +1,22 @@
 = Define a Vertex Type
 
-To define a vertex type, use the `CREATE VERTEX` command. 
-
-Vertex types are part of a graph schema. You can define either a global vertex type or a local vertex type. 
+To define a vertex type, use the `CREATE VERTEX` command. You can define either a global vertex type or a local vertex type. 
 
 * <<Define a global vertex type>>
 * <<Define a local vertex type>>
 
+Vertex types are part of a graph schema. Therefore, you need the `WRITE_SCHEMA` privilege on the in order to define a vertex type 
+
 == Define a global vertex type
-To define a global vertex type, use the the `CREATE VERTEX` command on the global scope
+To define a global vertex type, use the the `CREATE VERTEX` command on the global scope. 
+In this command you specify at least a name for the new vertex type, the names of the attributes and the data type of each attribute, and a primary key. 
+For example: 
+
+[,GSQL]
+----
+CREATE VERTEX movie (id UINT PRIMARY KEY, name STRING, year UINT)
+----
+This creates a global vertex type `movie` with the attribute `id` as its primary key, and two attributes `name` and `year`. A global vertex type can be used in the definiton of multiple graphs. 
 
 == Define a local vertex type
+To define a local vertex type, you need to first have defined a graph first, and then define a schema change job and use the `ADD VERTEX` statement. 

@@ -1,0 +1,19 @@
+= TigerGraph Data Science Library
+
+This library is a collection of expertly written GSQL queries, each of which implements a standard graph algorithm. Each algorithm is ready to be installed and used, either as a stand-alone query or as a building block of a larger analytics application.
+
+GSQL running on the TigerGraph platform is particularly well-suited for graph algorithms for several reasons:
+
+* *Turing-complete* with full support for imperative and procedural programming, ideal for algorithmic computation.
+Parallel and Distributed Processing, enabling computations on larger graphs.
+* *User-extensible*. Because the algorithms are written in standard GSQL and compiled by the user,  they are easy to modify and customize.
+* *Open-source*. Users can study the GSQL implementations to learn by example, and they can develop and submit additions to the library.
+
+== Algorithms
+The library's extensive collection of algorithms are classified into the following categories:
+
+* Centrality algorithms
+* Classification algorithms
+* Community detection algorithms
+* Graph embedding algorithms
+* Path-finding algorithms
