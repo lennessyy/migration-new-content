@@ -1,0 +1,13 @@
+= GSQL Cheat Sheets
+:description: GSQL Language quick reference manuals.
+
+This page provides two cheat sheets for GSQL:
+
+. GSQL Cheat Sheet for Data Definition and Loading
+. GSQL Cheat Sheet for Querying
+
+The cheat sheets are updated for TigerGraph v3.1.
+
+{% file src="../.gitbook/assets/ddl-language-cheatsheet (2).pdf" %}
+
+{% file src="../.gitbook/assets/query-language-cheatsheet (1).pdf" %}

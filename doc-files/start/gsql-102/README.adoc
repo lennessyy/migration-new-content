@@ -1,0 +1,18 @@
+= GSQL102 Pattern Matching
+:description: A guide to GSQL's multi-hop SELECT statements which make it convenient to express pattern-matching queries.
+
+{% page-ref page="get-set.md" %}
+
+{% page-ref page="load-data.md" %}
+
+{% page-ref page="one-hop-patterns.md" %}
+
+{% page-ref page="repeating-a-pattern.md" %}
+
+{% page-ref page="multiple-hop-and-accumulation.md" %}
+
+{% page-ref page="example.md" %}
+
+{% page-ref page="adv/" %}
+
+{% page-ref page="summary.md" %}

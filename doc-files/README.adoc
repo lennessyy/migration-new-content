@@ -1,0 +1,56 @@
+= TigerGraph Documentation
+
+To switch to a different version, select the version you want at the top of the menu on the left. For documentation of TigerGraph versions prior to 2.2, please contact TigerGraph Support.
+
+== Introducing: TigerGraph Distributed Cloud
+
+* Learn more and sign up:  http://www.tigergraph.com/cloud[www.tigergraph.com/cloud]
+* Documentation:  link:cloud/[TigerGraph Cloud]
+* Watch https://youtu.be/JARd9ULRP_I[Quick Start Video] and Start Your TigerGraph Cloud Solutions in 5 Minutes!
+
+== TigerGraph Server 3.2+++<table>++++++<thead>++++++<tr>++++++<th style="text-align:left">+++Major Sections+++</th>+++
+      +++<th style="text-align:left">+++Quick Links+++</th>++++++</tr>++++++</thead>+++
+  +++<tbody>++++++<tr>++++++<td style="text-align:left">+++Developers Community+++</td>+++
+      +++<td style="text-align:left">++++++<a href="https://community.tigergraph.com">+++TigerGraph Community Forum+++</a>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++FAQs and Troubleshooting+++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="faqs/release-notes-tigergraph-3.2.md">+++Release Notes - TigerGraph Server 3.+++</a>+++2
+          +++<br>++++++</br>++++++<a href="faqs/change-log-1/">+++Change Log+++</a>++++++</p>+++
+        +++<p>++++++<a href="faqs/knowledge-base-and-faqs.md">+++Knowledge Base and FAQs+++</a>++++++</p>+++
+        +++<p>++++++<a href="faqs/troubleshooting-guide.md">+++Troubleshooting Guide+++</a>++++++</p>+++
+        +++<p>++++++<a href="faqs/error-codes.md">+++Error Codes+++</a>++++++</p>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++Get Started+++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="admin/admin-guide/hw-and-sw-requirements.md">+++HW & SW Requirements+++</a>+++
+          +++<br>++++++</br>++++++<a href="admin/admin-guide/install-and-config/">+++Platform Installation+++</a>+++
+          +++<br>++++++</br>++++++<a href="start/get-started/">+++GET STARTED Tutorial+++</a>++++++</p>+++
+        +++<p>++++++<a href="start/gsql-101/">+++GSQL 101+++</a>+++, +++<a href="start/gsql-102/">+++GSQL 102+++</a>++++++</p>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++Platform Overview+++</td>+++
+      +++<td style="text-align:left">++++++<a href="tigergraph-platform-overview/comparison-of-editions.md">+++Comparing TigerGraph Editions+++</a>+++
+        +++<br>++++++</br>++++++<a href="tigergraph-platform-overview/graph-algorithm-library.md">+++GSQL Graph Algorithm Library+++</a>+++
+        +++<br>++++++</br>++++++<a href="tigergraph-platform-overview/multigraph-overview.md">+++MultiGraph Overview+++</a>+++
+        +++<br>++++++</br>++++++<a href="tigergraph-platform-overview/internal-architecture.md">+++TigerGraph Internal Architecture+++</a>+++
+        +++<br>++++++</br>++++++<a href="tigergraph-platform-overview/transaction-and-acid.md">+++Transaction Processing and ACID Support+++</a>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++GSQL+++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="start/gsql-101/">+++GSQL 101+++</a>++++++</p>+++
+        +++<p>++++++<a href="start/gsql-102/">+++GSQL 102 Pattern Matching+++</a>+++
+          +++<br>++++++</br>++++++<a href="start/accumulators-tutorial.md">+++Accumulators Tutorial+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/gsql-ref/ddl-and-loading/">+++GSQL Spec - Data Definition & Loading+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/gsql-ref/querying/">+++GSQL Spec - Querying+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/gsql-ref/querying/query-operations.md">+++Interpreted GSQL+++</a>++++++</p>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++GraphStudio and UI+++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="ui/graphstudio/">+++GraphStudio UI Guide+++</a>++++++</p>+++
+        +++<p>++++++<a href="ui/admin-portal/">+++Admin Portal UI Guide+++</a>++++++</p>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">+++Connectors and APIs+++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="dev/restpp-api/">+++RESTPP API User Guide+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/data-loader-guides/kafka-loader-user-guide.md">+++Kafka Loader User Guide+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/data-loader-guides/s3-loader-user-guide.md">+++S3 Loader User Guide+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/data-loader-guides/spark-connection-via-jdbc-driver.md">+++Spark Connection Via JDBC Driver+++</a>++++++</p>+++
+        +++<p>++++++<a href="dev/gsql-ref/querying/output-statements-and-file-objects.md">+++GSQL JSON Output Spec+++</a>++++++</p>+++
+        +++<p>++++++<a href="https://github.com/tigergraph/ecosys/tree/master/tools/etl">+++Connector Ecosystem+++</a>++++++</p>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<a href="admin/admin-guide/">+++Sys Mgmt and Admin+++</a>++++++</td>+++
+      +++<td style="text-align:left">++++++<p>++++++<a href="admin/admin-guide/install-and-config/ha-cluster.md">+++HA Cluster Configuration+++</a>++++++</p>+++
+        +++<p>++++++<a href="">+++User Privileges and Authentication+++</a>++++++</p>+++
+        +++<p>++++++<a href="tigergraph-platform-overview/multigraph-overview.md">+++MultiGraph+++</a>++++++</p>+++
+        +++<p>++++++<a href="admin/admin-guide/user-access/ldap.md">+++LDAP+++</a>+++ and +++<a href="admin/admin-guide/user-access/single-sign-on.md">+++Single Sign-On+++</a>++++++</p>+++
+        +++<p>++++++<a href="admin/admin-guide/data-encryption/">+++Data Encryption+++</a>++++++</p>+++
+        +++<p>++++++<a href="admin/admin-guide/system-management/backup-and-restore.md">+++Backup and Restore+++</a>++++++</p>+++
+        +++<p>++++++<a href="admin/admin-guide/system-management/database-import-export.md">+++Export and Import+++</a>++++++</p>++++++</td>++++++</tr>++++++</tbody>++++++</table>+++

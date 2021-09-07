@@ -1,0 +1,66 @@
+= GSQL Demo Examples
+
+{% hint style="info" %}
+This is our our original Get-Started tutorial for 2017. Today, we'd suggest you start with link:../get-started/[GET STARTED Tutorial] or one of our video tutorials.
+{% endhint %}
+
+Using the TigerGraph™ platform is as easy as 1-2-3. In this tutorial we will show you how to use the TigerGraph platform and the GSQL language by developing solutions for several use cases, using the following three-step method:
+
+. Create a Graph Model for the use case using the GSQL™ language, TigerGraph's high-level graph definition and manipulation language.
+. Load Initial Data : load and transform data to TigerGraph's graph engine.
+. Write a Graph-based Solution by writing queries in the GSQL language.
+
+In addition, this guide will also show you how to update your data: load more data, revise your data, or delete selected data.
+
+Each example involves a data set and simple example of a real-life query or task.  We develop a graph model, a loading job to load the data, and one or more queries to answer the question at hand. The applications for graph-based queries are limitless. The goal of these examples is to demonstrate the expressive power of GSQL queries, as well as how business intelligence is a natural fit for the graph analytics world.
+
+{% hint style="warning" %}
+We assume the user has a working installation of the TigerGraph system. If you have not installed the system, please refer to the xref:../../admin/admin-guide/install-and-config/install.adoc[TigerGraph Platform Installation Guide].
+
+This tutorial uses the console-based GSQL Shell. If you prefer to use the browser-based GraphStudio UI, see the link:../../ui/graphstudio/[TigerGraph GraphStudio UI Guide] first. You can then return to this document in learn more about the language itself.
+
+To start the GSQL Shell: +
+type the command ``gsql``to exit, type ``exit``or `quit` to run a command file from within the shell, precede the file name with "@":
+
+[source,text]
+----
+GSQL> @load_demo.gsql
+----
+
+You can also run GSQL commands directly from Linux:
+
+* For single-line commands, type "gsql" followed by the command enclosed in single-quotation marks:
+* {blank}
++
+[source,text]
+----
+$ gsql 'RUN QUERY topCopLiked("id1", 5)'
+----
+
+* For command files, just type "gsql" followed by the filename:
+* {blank}
++
+[source,text]
+----
+$ gsql cf_model.gsql
+----
++
+{% endhint %}
+
+{% hint style="warning" %}
+ The loading jobs have been updated to v2.0 syntax. The output examples have been updated to JSON output API version "v2", which is the default output format for TigerGraph platform version 1.1 or higher.
+{% endhint %}
+
+{% hint style="info" %}
+*Common Graph Schema of Demo Examples*
+
+The examples in Part 1 of this tutorial have been designed so that all them can be loaded together in one global graph, gsql_demo. This has several benefits:
+
+. You can quickly load several demo examples by running just one script.
+. After they are loaded, you can switch from one example to another with no delay.
+. The format is modular, so additional examples can be added easily.
+
+If you want to learn how to design your own graph data analyses, we recommend reading and doing Example 1, then Example 2, etc., rather than running the entire batch of examples at once.
+{% endhint %}
+
+{% page-ref page="common-applications.md" %}

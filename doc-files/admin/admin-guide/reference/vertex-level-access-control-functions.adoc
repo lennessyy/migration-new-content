@@ -1,0 +1,278 @@
+= Vertex-level Access Control Functions
+
+These functions are only available for vertex aliases (defined in the `FROM` clause of a `SELECT` statement); they cannot be applied to vertex variables in other contexts.+++<table>++++++<thead>++++++<tr>++++++<th style="text-align:left">+++Function+++</th>+++
+      +++<th style="text-align:left">+++Description+++</th>+++
+      +++<th style="text-align:left">+++Return type+++</th>++++++</tr>++++++</thead>+++
+  +++<tbody>++++++<tr>++++++<td style="text-align:left">++++++<code>+++v.isTaggable()+++</code>++++++</td>+++
+      +++<td style="text-align:left">+++Return true if v is of a taggable vertex type.+++</td>+++
+      +++<td style="text-align:left">++++++<code>+++BOOL+++</code>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<code>+++v.getTags()+++</code>++++++</td>+++
+      +++<td style="text-align:left">+++Return v&apos;s set of tags. If v is untaggable, it returns an empty set.+++</td>+++
+      +++<td style="text-align:left">++++++<code>+++SET<STRING>+++</code>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<p>++++++<code>+++v.hasTags(+++</code>++++++</p>+++
+        +++<p>++++++<code>+++STRING tag1,\... +++<br>++++++</br>+++STRING tagN)+++</code>++++++</p>++++++</td>+++
+      +++<td style="text-align:left">+++Return true if v has every tag in the argument list of tags.+++</td>+++
+      +++<td style="text-align:left">++++++<code>+++BOOL+++</code>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<p>++++++<code>+++v.intersectTags(+++</code>++++++</p>+++
+        +++<p>++++++<code>+++VERTEX v2)+++</code>++++++</p>++++++</td>+++
+      +++<td style="text-align:left">+++Return the set of tags that v and v2 have in common.+++</td>+++
+      +++<td style="text-align:left">++++++<code>+++SET<STRING>+++</code>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<p>++++++<code>+++v.differenceTags(+++</code>++++++</p>+++
+        +++<p>++++++<code>+++VERTEX v2)+++</code>++++++</p>++++++</td>+++
+      +++<td style="text-align:left">+++Return the set of tags that v has but v2 does not have.+++</td>+++
+      +++<td style="text-align:left">++++++<code>+++SET<STRING>+++</code>++++++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<p>++++++<code>+++v.addTags(+++</code>++++++</p>+++
+        +++<p>++++++<code>+++STRING tag1,\... +++<br>++++++</br>+++STRING tagN)+++</code>++++++</p>++++++</td>+++
+      +++<td style="text-align:left">+++Add the given tags to v.+++</td>+++
+      +++<td style="text-align:left">+++n/a+++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<p>++++++<code>+++v.removeTags(+++</code>++++++</p>+++
+        +++<p>++++++<code>+++STRING tag1,\...+++</code>++++++</p>+++
+        +++<p>++++++<code>+++STRING tagN)+++</code>++++++</p>++++++</td>+++
+      +++<td style="text-align:left">+++Remove the given tags from v.+++</td>+++
+      +++<td style="text-align:left">+++n/a+++</td>++++++</tr>+++
+    +++<tr>++++++<td style="text-align:left">++++++<code>+++v.removeAllTags()+++</code>++++++</td>+++
+      +++<td style="text-align:left">+++Remove all tags from V.+++</td>+++
+      +++<td style="text-align:left">+++n/a+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+
+*Security Roles:* In order to use these functions, a user must have `admin` or `designer` roles on the base graph. These funcitons cannot be used on a tag-based graph.
+
+[discrete]
+=== `isTaggable()`
+
+This function returns true if the vertex is taggable.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+//count the number of taggable vertices in the graph.
+CREATE QUERY countIstaggable() for graph poc_graph_tag {
+  SumAccum<int> @@count;
+  vSet = { any };
+  vSet = SELECT s
+         FROM vSet:s
+         WHERE s.isTaggable()
+         ACCUM @@count += 1;
+  PRINT @@count;
+}
+----
+
+[discrete]
+=== `getTags()`
+
+This function returns the vertex's tags as a set. If the vertex has no tags or is untaggable, it returns an empty set.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+//print the tags of each vertices, in 2 different ways.
+CREATE QUERY exampleGettags() {
+  SetAccum<string> @vAcc;
+  vSet = { any };
+  vSet = SELECT s
+         FROM vSet:s
+         ACCUM s.@vAcc += s.getTags();
+  PRINT vSet[vSet.@vAcc];
+  PRINT vSet[vSet.gettags()];
+}
+----
+
+{% hint style="info" %}
+Tip: `getTags()` can be used within a `PRINT` statement:
+
+* `PRINT R [R.getTags()];`
+* or `PRINT R WITH TAGS` which is syntax sugar, except that it won't print `"R.getTags()": []` for non-taggable vertices.
+{% endhint %}
+
+[discrete]
+=== `+hasTags(STRING tag1,... STRING tagN)+`
+
+This function returns `true` if the vertex has every tag provided in the argument list and returns `false` if it does not.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+USE GRAPH socialNet
+
+CREATE QUERY findVertexWithTag(STRING tag) {
+  seed = { ANY };
+  res =
+    SELECT v
+    FROM seed:v
+    WHERE v.hasTags(tag)
+    ORDER BY v.id;
+  PRINT res WITH TAGS;
+}
+
+INSTALL QUERY findVertexWithTag
+
+RUN QUERY findVertexWithTag("vip")
+----
+
+The output of the query would be:
+
+[source,erlang]
+----
+{
+  "error": false,
+  "message": "",
+  "version": {
+    "schema": 2,
+    "edition": "enterprise",
+    "api": "v2"
+  },
+  "results": [{"res": [
+    {
+      "v_id": "person6",
+      "attributes": {
+        "gender": "Male",
+        "id": "person6",
+        "res.gettags()": [
+          "vip",
+          "public"
+        ]
+      },
+      "v_type": "person"
+    },
+    {
+      "v_id": "person7",
+      "attributes": {
+        "gender": "Male",
+        "id": "person7",
+        "res.gettags()": [
+          "vip",
+          "public"
+        ]
+      },
+      "v_type": "person"
+    },
+    {
+      "v_id": "person8",
+      "attributes": {
+        "gender": "Male",
+        "id": "person8",
+        "res.gettags()": ["vip"]
+      },
+      "v_type": "person"
+    }
+  ]}]
+}
+----
+
+[discrete]
+=== `intersectTags(VERTEX v2)`
+
+This function returns the common tags between the vertex and another vertex as a set.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+//return the intersect set of tags between two vertices.
+CREATE QUERY exampleIntersecttags() {
+  SetAccum<string> @vAcc;
+  vSet = { any };
+  vSet = SELECT s
+         FROM vSet:s -(_)-> :t
+         WHERE t.type == "person"
+         ACCUM s.@vAcc += s.intersectTags(t);
+  PRINT vSet[vSet.@vAcc];
+}
+----
+
+[discrete]
+=== `differenceTags(VERTEX v2)`
+
+This function returns the difference in tags between the vertex and another vertex as a set.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+//return the difference set of tags between two vertices
+CREATE QUERY exampleDifferencetags() {
+  SetAccum<string> @vAcc;
+  vSet = { any };
+  vSet = SELECT s
+         FROM vSet:s -(_)-> :t
+         WHERE t.type == "person"
+         ACCUM s.@vAcc += s.differenceTags(t);
+  PRINT vSet[vSet.@vAcc];
+}
+----
+
+[discrete]
+=== `+addTags(STRING tag1,... STRING tagN)+`
+
+This function adds the tags provided in the argument list to the vertex.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+CREATE QUERY addTagsToPerson() {
+  Seed = { any };
+  # person1 ~ person5 will be tagged as public.
+  vSet = SELECT s
+         FROM Seed:s
+         WHERE s.id IN ("person1","person2","person3","person4","person5")
+         ACCUM s.addTags("public");
+
+  # person6 and person7 will be tagged as public and vip.
+  vSet = SELECT s
+         FROM Seed:s
+         WHERE s.id IN ("person6","person7")
+         ACCUM s.addTags("vip", "public");
+
+  # person8 will be tagged as vip
+  vSet = SELECT s
+         FROM Seed:s
+         WHERE s.id == "person8"
+         ACCUM s.addTags("vip");
+}
+----
+
+[discrete]
+=== `+removeTags(STRING tag1,... STRING tagN)+`
+
+This function removes the tags provided in the argument list from the vertex.
+
+[source,erlang]
+----
+//remove tag “vip” and “public” from all person vertices.
+CREATE QUERY removetagsFromPerson() {
+  vSet = { person.* };
+  # remove tag vip and public from all person vertices
+  vSet = SELECT s
+         FROM vSet:s
+         ACCUM s.removeTags("vip", "public");
+}
+----
+
+[discrete]
+=== `removeAllTags()`
+
+This function removes all tags from the vertex.
+
+[discrete]
+==== Example:
+
+[source,erlang]
+----
+//remove all tags from all person vertices.
+CREATE QUERY removealltagsFromPerson() {
+  vSet = { person.* };
+  # remove all tags from all person vertices
+  vSet = SELECT s
+         FROM vSet:s
+         ACCUM s.removeAllTags();
+}
+----
