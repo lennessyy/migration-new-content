@@ -1,0 +1,18 @@
+= Documentation process
+
+== Everyone
+Every user of the TigerGraph documentation can make PRs when they see a typo, grammar mistake, or technical inaccuracy.
+Click on "Edit this page" in the upper-right corner.
+
+== Requesters
+Anyone can request new features, changes, issue fixes to the documentation.
+When making a request for documentation, in addition to providing information that can help writers produce the draft, name a person to be the reviewer for the draft.
+
+If the requester does not name a reviewer, then the requester bears the responsibility of answering questions and reviewing the draft.
+
+== Writers
+=== Decide the location of the new documentation
+Work in a clone of the source repository in a new branch, and identify there the feature should go.
+
+== Reviewers
+

@@ -1,6 +1,7 @@
 = The GSQL Shell
 
-The GSQL shell is a fully functional Java environment for interacting with the TigerGraph database. It is included in a standard TigerGraph installation. 
+The GSQL shell is a fully functional Java environment for interacting with the TigerGraph database. 
+It is one of the primary ways to interact with the TigerGraph database and is included in a standard TigerGraph installation. 
 
 == Launch the shell
 As the TigerGraph Linux user, type `gsql` into the bash terminal to start a GSQL shell session:
@@ -19,3 +20,24 @@ You don't always need to enter the interactive shell in order to run a GSQL comm
 ----
 $ gsql 'ls'
 ----
+
+== Change scope
+In the GSQL shell, you can run commands on a global scope or on a local scope. 
+When you start a GSQL session, you are in the global scope.
+To change to the local scope of a graph, run the `USE GRAPH` command.
+
+[source,GSQL]
+----
+GSQL > USE GRAPH social
+Using graph 'social'
+----
+
+To switch back to the global scope, run `USE GLOBAL`. 
+
+[source,GSQL]
+----
+GSQL > USE GLOBAL
+----
+
+Operating on different scopes will require different privileges. 
+For more information, see Roles and Privileges. 

@@ -140,3 +140,18 @@ Is it possible to have a script that moves the image files?
 
 . Search a page for references to images 
 . Fetch the image from the outside image folder to put in the correct location
+
+== Code languages
+Gitbook did not allow us to customize syntax highlighting, so we have been using ErLang and SQL highlighting rules in our documentation.
+Antora is able to integrate with Pygment for syntax highlighting, so we should change the code to say GSQL.
+
+=== Rawtext after kramdoc
+----
+[,sql]
+[,erlang]
+----
+
+=== Target adoc
+----
+[source,gsql]
+----

@@ -1,0 +1,16 @@
+= Database Definition
+:sectnums:
+
+Before you can load data into a graph and write queries on TigerGraph, you must first define a graph schema.
+A graph schema in TigerGraph is made up of different vertex types and edge types.
+Each vertex and edge type have their own attributes.
+
+Database definition operations happen in two stages:
+
+==  Define a schema
+A graph schema is a "dictionary" that defines the types of entities, vertices and edges, in the graph and how those types of entities are related to one another.
+Each vertex or edge type has a name and a set of attributes (properties) associated with it.
+For example, a `Book` vertex could have title, author, publication year, genre, and language attributes.
+
+==  Modify a schema
+

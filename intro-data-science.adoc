@@ -10,7 +10,7 @@ Parallel and Distributed Processing, enabling computations on larger graphs.
 * *Open-source*. Users can study the GSQL implementations to learn by example, and they can develop and submit additions to the library.
 
 == Algorithms
-The library's extensive collection of algorithms are classified into the following categories:
+The library's extensive collection of algorithms is classified into the following categories:
 
 * Centrality algorithms
 * Classification algorithms
